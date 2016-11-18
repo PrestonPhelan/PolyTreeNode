@@ -1,5 +1,6 @@
 class PolyTreeNode
-  attr_reader :parent, :children, :value
+  attr_accessor :children
+  attr_reader :parent, :value
 
   def initialize(value)
     @parent = nil
@@ -8,8 +9,8 @@ class PolyTreeNode
   end
 
   def parent=(node)
-    unless parent
-      ##Reassign parent/children
+    if parent
+      parent.children.reject! { |element| element == self }
     end
 
     @parent = node
